@@ -29,7 +29,7 @@ router.post('/generation', async function (req, res, next) {
   try {
     const response = await openai.createImage({
       "prompt": prompt.promptText,
-      "n": parseInt(prompt.promptNum),
+      "n": 1,
       "size": "1024x1024",
       "response_format": "b64_json",
     });
