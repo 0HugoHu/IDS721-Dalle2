@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'dalle2-starter' });
+  res.render('index', { title: 'IDS721: Dalle' });
 });
 
 module.exports = router;

@@ -9,6 +9,7 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
 });
 const openai = new OpenAIApi(configuration);
+const sharp = require('sharp');
 var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser');
@@ -29,24 +30,58 @@ router.post('/generation', async function (req, res, next) {
     const response = await openai.createImage({
       "prompt": prompt.promptText,
       "n": parseInt(prompt.promptNum),
-      "size": prompt.promptRes,
+      "size": "1024x1024",
       "response_format": "b64_json",
     });
 
-    res.send(response.data.data)
+    let dataURL = response.data.data[0].b64_json;
+    // Convert the base64 data URL to a Buffer
+    const imageBuffer = Buffer.from(dataURL, 'base64');
 
-    if (prompt.promptSave == true) {
-      for (i = 0; i < response.data.data.length; i++) {
-        let promptName = (prompt.promptText.substring(0, 150) + " - " + prompt.promptTime.substring(0, 50) + " - " + i).replace(/[/\\?%*:|"<>]/g, '-');
-        const filePath = imageFolder + '/' + promptName + '.jpg';
-        fs.writeFile(filePath, response.data.data[i].b64_json, 'base64', (err) => {
-          if (err) {
-            console.error(err);
-          }
-        });
-
-      }
+    // Calculate the dimensions for a 16:9 aspect ratio
+    let targetAspectRatio = 0.0;
+    switch (prompt.promptRes) {
+      case "landscape":
+        targetAspectRatio = 16 / 9;
+        break;
+      case "normal":
+        targetAspectRatio = 4 / 3;
+        break;
+      case "classic":
+        targetAspectRatio = 3 / 2;
+        break;
+      case "square":
+        targetAspectRatio = 1 / 1;
+        break;
+      default:
+        targetAspectRatio = 16 / 9;
+        break;
     }
+
+    const inputWidth = 1024;
+    const inputHeight = 1024;
+
+    const targetHeight = Math.round(inputWidth / targetAspectRatio);
+    const offsetY = Math.round((inputHeight - targetHeight) / 2);
+
+    // Load the image, crop it to the desired aspect ratio, and save the result
+    sharp(imageBuffer)
+      .extract({
+        left: 0,
+        top: offsetY,
+        width: inputWidth,
+        height: targetHeight,
+      })
+      .toBuffer((err, outputBuffer, info) => {
+        if (err) {
+          console.error('Error processing the image:', err);
+        } else {
+          const outputDataURL = 'data:image/png;base64,' + outputBuffer.toString('base64');
+          res.send(outputDataURL)
+        }
+      });
+
+
   } catch (error) {
     console.error(error);
     res.status(500).send({
@@ -54,50 +89,10 @@ router.post('/generation', async function (req, res, next) {
     });
   }
 
-
-
 });
 
-/* Variation completion */
-router.post('/variation', async function (req, res, next) {
-  var prompt = req.body;
 
-  const base64 = prompt.imageData.split(",")[1];
-  const buf = Buffer.from(base64, 'base64');
-  buf.name = "image.png";
-
-  try {
-    const response = await openai.createImageVariation(
-      buf,
-      parseInt(prompt.promptNum),
-      prompt.promptRes,
-      `b64_json`
-    );
-
-    res.send(response.data.data)
-
-    if (prompt.promptSave == true) {
-
-      for (i = 0; i < response.data.data.length; i++) {
-        let promptName = ("Variation - " + prompt.promptTime.substring(0, 50) + " - " + i).replace(/[/\\?%*:|"<>]/g, '-');
-        const filePath = imageFolder + '/' + promptName + '.jpg';
-        fs.writeFile(filePath, response.data.data[i].b64_json, 'base64', (err) => {
-          if (err) {
-            console.error(err);
-          }
-        });
-      }
-    }
-
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({
-      error: "Something went wrong."
-    });
-  }
-});
-
-/* Variation completion */
+/* Edition completion */
 router.post('/edits', async function (req, res, next) {
   var prompt = req.body;
 
@@ -110,25 +105,58 @@ router.post('/edits', async function (req, res, next) {
       buf,
       buf,
       prompt.promptText,
-      parseInt(prompt.promptNum),
-      prompt.promptRes,
+      1,
+      "1024x1024",
       `b64_json`
     );
 
-    res.send(response.data.data)
+    let dataURL = response.data.data[0].b64_json;
+    // Convert the base64 data URL to a Buffer
+    const imageBuffer = Buffer.from(dataURL, 'base64');
 
-    if (prompt.promptSave == true) {
-
-      for (i = 0; i < response.data.data.length; i++) {
-        let promptName = ("Edit - " + prompt.promptTime.substring(0, 50) + " - " + i).replace(/[/\\?%*:|"<>]/g, '-');
-        const filePath = imageFolder + '/' + promptName + '.jpg';
-        fs.writeFile(filePath, response.data.data[i].b64_json, 'base64', (err) => {
-          if (err) {
-            console.error(err);
-          }
-        });
-      }
+    // Calculate the dimensions for a 16:9 aspect ratio
+    let targetAspectRatio = 0.0;
+    switch (prompt.promptRes) {
+      case "landscape":
+        targetAspectRatio = 16 / 9;
+        break;
+      case "normal":
+        targetAspectRatio = 4 / 3;
+        break;
+      case "classic":
+        targetAspectRatio = 3 / 2;
+        break;
+      case "square":
+        targetAspectRatio = 1 / 1;
+        break;
+      default:
+        targetAspectRatio = 16 / 9;
+        break;
     }
+
+    const inputWidth = 1024;
+    const inputHeight = 1024;
+
+    const targetHeight = Math.round(inputWidth / targetAspectRatio);
+    const offsetY = Math.round((inputHeight - targetHeight) / 2);
+
+    // Load the image, crop it to the desired aspect ratio, and save the result
+    sharp(imageBuffer)
+      .extract({
+        left: 0,
+        top: 0,
+        width: inputWidth,
+        height: targetHeight,
+      })
+      .toBuffer((err, outputBuffer, info) => {
+        if (err) {
+          console.error('Error processing the image:', err);
+        } else {
+          const outputDataURL = 'data:image/png;base64,' + outputBuffer.toString('base64');
+          res.send(outputDataURL)
+        }
+      });
+
   } catch (error) {
     console.error(error);
     res.status(500).send({
