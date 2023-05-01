@@ -1,11 +1,13 @@
 {
-  "name": "dalle2-starter",
-  "version": "0.1",
+  "name": "ids721-dalle2",
+  "version": "1.0",
   "private": true,
   "scripts": {
+    "pm2": "pm2 start processes.json --no-daemon",
     "start": "node ./bin/www",
     "tailwind": "npx tailwindcss -i ./src/stylesheets/style.css -o ./public/stylesheets/style.css",
-    "build": "npm run tailwind && npm run start"
+    "build": "npm run tailwind && npm run start",
+    "migrate": "node ./bin/migrate.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -18,6 +20,7 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "openai": "^3.1.0",
+    "pm2": "^5.3.0",
     "request": "^2.88.2",
     "sharp": "^0.32.1"
   },
