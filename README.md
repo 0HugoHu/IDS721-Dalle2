@@ -146,7 +146,7 @@ This picture shows the image pushed to AWS AppRunner:
 - [Arthur Chen](https://github.com/ArthurChenCoding)
 - [Hugo Hu](https://github.com/0HugoHu)
 - [Minghui Zhu](https://github.com/zhuminghui17)
-- [Shien Ze](https://github.com/casnz1601) -->
+- [Enze Shi](https://github.com/casnz1601) -->
 
 ## 5. License
 This project is under the MIT License.
