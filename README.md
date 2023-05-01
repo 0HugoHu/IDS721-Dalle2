@@ -32,7 +32,7 @@ You have to obtain your OpenAI API Key to request image generations, variations,
 
 ## 2. Demo
 ### 2.1 Video Demo
-Link TBD
+[Video Link](https://drive.google.com/file/d/1FmZOWZeAVtkEB4KG-Bgonr8Zi1nStBwl/view?usp=share_link)
 
 ### 2.2 Features
 
