@@ -38,8 +38,8 @@ Link TBD
 
 - Access Dall-E 2 generation using API.
 - **Generation Mode**: Users can submit a prompt and the application will return an image. Users can also customize the aspect ratio from 16:9 (default), 4:3, 3:2, and 1:1 to suit their needs.
-![image](./demo-images/generate-pic.png)
-![image](./demo-images/generate-pic2.png)
+![image](./demo-images/generate1.png)
+
 - **Edit Mode**: Users can upload an image, click the eraser button on the left sidebar, and can erase any part of the image! Then with a **new prompt**, the application will return a new image with the erased part re-generated.
 ![image](./demo-images/modify.png)
 ![image](./demo-images/new.png)
