@@ -6,14 +6,14 @@ IDS721 Cloud Computing - Team Final Project
 
 In this project, we build a web application that allows users to enter a prompt, then return a generated image by ***OpenAI DALLE API***. It also allows to edit the image by adding a movable and resizable mask, the selected area is then re-generated with the second prompt. Users can specify the height-width ratio of the returning image.
 
-### 0.1 Technical Features
+### 0.1. Technical Features
 
-The application is built using ```Node / Express``` as backend and ```Jade``` as a template engine The frontend is designed with ```TailwindCSS / Flowbite``` and ````Fabric.JS (canvas element)```. It runs in ```Docker``` for production. The application is deployed on ```AWS ECR``` for Docker image storage, and ```AWS AppRunner``` a cloud platform for static sites and Serverless Functions for auto deployment. 
+The application is built using ```Node/Express``` as backend and ```Jade``` as a template engine The frontend is designed with ```TailwindCSS/Flowbite``` and ```Fabric.JS (canvas element)```. It runs in ```Docker``` for production. The application is deployed on ```AWS ECR``` for Docker image storage, and ```AWS AppRunner``` a cloud platform for static sites and Serverless Functions for auto deployment. 
 
-### 0.2 User Groups
+### 0.2. User Groups
 The web application is intended for use by individuals and organizations who require high-quality generated images for various purposes. This includes artists, graphic designers, web developers, and more.
 
-### 0.3 Applications
+### 0.3. Applications
 The generated images can be used for a variety of applications, including but not limited to:
 - Art and design projects
 - Marketing and advertising campaigns
@@ -22,7 +22,7 @@ The generated images can be used for a variety of applications, including but no
 - Education and research projects
 - And much more!
 
-### 0.4 OpenAI API Key
+### 0.4. OpenAI API Key
 You have to obtain your OpenAI API Key to request image generations, variations, or edits. 
 
 ## 1. Architecture Diagram
@@ -35,12 +35,11 @@ Link TBD
 ### 2.2 Features
 
 - Access Dall-E 2 generation using API.
-- **Generation Mode**: users can submit a prompt and the application will return an image. Users can also customize the aspect ratio from 16:9, 4:3, 3:2, and 1:1 (default) to suit their needs.
+- **Generation Mode**: Users can submit a prompt and the application will return an image. Users can also customize the aspect ratio from 16:9 (default), 4:3, 3:2, and 1:1 to suit their needs.
 ![image](./demo-images/generate-pic.png)
 ![image](./demo-images/generate-pic2.png)
-- **Edit Mode**: users can upload an image, click the eraser button on the left sidebar, and can erase any part of the image! It is a preparation for next step - *Variation*.
+- **Edit Mode**: Users can upload an image, click the eraser button on the left sidebar, and can erase any part of the image! Then with a **new prompt**, the application will return a new image with the erased part re-generated.
 ![image](./demo-images/modify.png)
-- **Variation**: Users can submit a new prompt and the application will fill in the erased part of the edited image with the new prompt smoothly.
 ![image](./demo-images/new.png)
 - **History**: The application keeps a history of all the images generated for easy reference.
 - **Save Images**: Users can save the images locally by clicking on the image and then right-clicking to choose ```Save image as```.
@@ -68,7 +67,8 @@ npm install
 ```
 Add API key to ```environment.env``` in root folder
 ```bash
-OPENAI_API_KEY="" # Obtain From OpenAI!
+# Obtain from OpenAI!
+OPENAI_API_KEY="" 
 ```
 start app
 ```
