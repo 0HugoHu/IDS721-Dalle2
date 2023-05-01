@@ -26,7 +26,7 @@ The generated images can be used for a variety of applications, including but no
 You have to obtain your OpenAI API Key to request image generations, variations, or edits. 
 
 ## 1. Architecture Diagram
-Diagram TBD
+![image](./demo-images/diagram.png)
 
 ## 2. Demo
 ### 2.1 Video Demo
