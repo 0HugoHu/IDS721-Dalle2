@@ -8,7 +8,7 @@ In this project, we build a web application that allows users to enter a prompt,
 
 ### 0.1 Technical Features
 
-The application is built using ```Node / Express``` as backend and ```Jade``` as a template engine The frontend is designed with ```TailwindCSS / Flowbite``` and ````Fabric.JS (canvas element)```. It runs in ```Docker``` for production. The application is deployed on ```AWS ECR``` for Docker image storage, and ```AWS AppRunner``` a cloud platform for static sites and Serverless Functions for auto deployment. 
+The application is built using ```Node / Express``` as backend and ```Jade``` as a template engine The frontend is designed with ```TailwindCSS / Flowbite``` and ```Fabric.JS (canvas element)```. It runs in ```Docker``` for production. The application is deployed on ```AWS ECR``` for Docker image storage, and ```AWS AppRunner``` a cloud platform for static sites and Serverless Functions for auto deployment. 
 
 ### 0.2 User Groups
 The web application is intended for use by individuals and organizations who require high-quality generated images for various purposes. This includes artists, graphic designers, web developers, and more.
