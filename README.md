@@ -8,7 +8,9 @@ In this project, we build a web application that allows users to enter a prompt,
 
 ### 0.1. Technical Features
 
-The application is built using ```Node/Express``` as backend and ```Jade``` as a template engine The frontend is designed with ```TailwindCSS/Flowbite``` and ```Fabric.JS``` (canvas element). While running our Node.js application with node ```bin/www``` is fine for most cases, we want a more robust solution to keep everything running smoothly in production. So we use ```pm2```. It runs in ```Docker``` for production. The application is deployed on ```AWS ECR``` for Docker image storage, and ```AWS AppRunner``` a cloud platform for static sites and Serverless Functions for auto deployment. 
+The application is built using ```Node/Express``` as backend and ```Jade``` as a template engine The frontend is designed with ```TailwindCSS/Flowbite``` and ```Fabric.JS``` (canvas element). While running our Node.js application with node ```bin/www``` is fine for most cases, we want a more robust solution to keep everything running smoothly in production. So we use ```pm2```.
+
+It runs in ```Docker``` for production. The application is deployed on ```AWS ECR``` for Docker image storage, and ```AWS AppRunner``` a cloud platform for static sites and Serverless Functions for auto deployment. 
 
 ### 0.2. User Groups
 The web application is intended for use by individuals and organizations who require high-quality generated images for various purposes. This includes artists, graphic designers, web developers, and more.
@@ -75,8 +77,8 @@ start app
 npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the web page.
-*(Make sure your Port 3000 is free or you can change the port number in ```bin/www``` file.)*
+Open [http://localhost:8080](http://localhost:8080) with your browser to see the web page.
+*(Make sure your Port 8080 is free or you can change the port number in ```bin/www``` file.)*
 
 ## 4. Publish to AWS ECR and AppRunner
 
@@ -124,6 +126,9 @@ docker push YOUR_ECR_ID.dkr.ecr.us-east-1.amazonaws.com/hugoweather:latest
 # replace YOUR_ECR_ID with your image url
 ```
 
+This picture shows the image pushed to AWS ECR:
+![image](./demo-images/ecr.png)
+
 ### 4.3. Publish to AWS AppRunner
 
 Create a new AppRunner service: [AWS APPRunner](https://us-east-1.console.aws.amazon.com/apprunner) 
@@ -131,6 +136,10 @@ Create a new AppRunner service: [AWS APPRunner](https://us-east-1.console.aws.am
 Select the image you built, and choose **Auto Deploy**.
 
 Wait until health check is automatically completed.
+
+This picture shows the image pushed to AWS AppRunner:
+
+![image](./demo-images/apprunner.png)
 
 <!-- ## 4. Contributors
 

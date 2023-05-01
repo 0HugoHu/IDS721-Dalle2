@@ -16,5 +16,5 @@ RUN npm install --save pm2
 # Bundle app source
 COPY . .
 
-EXPOSE 3000
+EXPOSE 8080
 CMD [ "npm", "run", "pm2" ]
