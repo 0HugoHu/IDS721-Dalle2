@@ -33,17 +33,17 @@ Diagram TBD
 Link TBD
 
 ### 2.2 Features
+
 - Access Dall-E 2 generation using API.
-- **Generation Mode**: users can submit a prompt and it will return an image. Users can *customize the aspect ratios* from 16:9, 4:3, 3:2 and 1:1 (default).
+- **Generation Mode**: users can submit a prompt and the application will return an image. Users can also customize the aspect ratio from 16:9, 4:3, 3:2, and 1:1 (default) to suit their needs.
 ![image](./demo-images/generate-pic.png)
 ![image](./demo-images/generate-pic2.png)
 - **Edit Mode**: users can upload an image, click the eraser button on the left sidebar, and can erase any part of the image! It is a preparation for next step - *Variation*.
 ![image](./demo-images/modify.png)
-- **Variation**: Users can submit a new prompt, and OpenAI can fill the hole in the edited image with the prompt smoothly. 
+- **Variation**: Users can submit a new prompt and the application will fill in the erased part of the edited image with the new prompt smoothly.
 ![image](./demo-images/new.png)
-- **History**: Once any images created, it will list on the bottom of the page for reference. 
-- **Save Images**: Users can save the images local by ```click image``` -> ```right click``` -> ```save image as```.
-
+- **History**: The application keeps a history of all the images generated for easy reference.
+- **Save Images**: Users can save the images locally by clicking on the image and then right-clicking to choose ```Save image as```.
 
 ## 3. Getting Started
 
